@@ -3,7 +3,9 @@ import './App.css';
 import NoteCreator from './NoteCreator.js';
 
 const Header = () => {
-
+  return(
+    <h1>Header</h1>
+  )
 }
 
 const Footer = () => {
