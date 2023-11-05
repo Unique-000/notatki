@@ -4,12 +4,18 @@ import NoteCreator from './NoteCreator.js';
 
 const Header = () => {
   return(
-    <h1>Header</h1>
+    <div className='Header'>
+      <h1 className='HeaderFooter-h1'>Header</h1>
+    </div>
   )
 }
 
 const Footer = () => {
-  
+  return(
+    <div className='Footer'>
+      
+    </div>
+  )
 }
 
 const App = () => {

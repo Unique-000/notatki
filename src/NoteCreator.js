@@ -6,7 +6,22 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 const NoteCreator = () => {
     const [cardsList, setCardsList] = useState([]);
+    const defaultList = ["A", "B", "C", "D", "E"];
+    const [itemList, setItemList] = useState(defaultList);
 
+    // Function to update list on drop
+    const handleDrop = (droppedItem) => {
+      // Ignore drop outside droppable container
+      if (!droppedItem.destination) return;
+      var updatedList = [...itemList];
+      // Remove dragged item
+      const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1);
+      // Add dropped item
+      updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
+      // Update State
+      setItemList(updatedList);
+    };
+  
     const TitleCard = (props) => {
         const [inputValue, setInputValue] = useState('');
         function submit(){
@@ -210,13 +225,12 @@ const NoteCreator = () => {
                     <button className='AddBtn' onClick={openCardModifier}>
                         <CiCirclePlus size={'40px'}/>
                     </button>
-
                 </div>
             </div>
 
             <div className='Preview'>
                 <h1>Preview</h1>
-                <hr style={{width:'100%'}}/> 
+                <hr/> 
                 <CardsRenderer cardsList={cardsList} />
             </div>
             {isDialogOpen && (
