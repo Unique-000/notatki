@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    {console.log('░▒█░▒█░▒█▄░▒█░▀█▀░▒█▀▀█░▒█░▒█░▒█▀▀▀\n░▒█░▒█░▒█▒█▒█░▒█░░▒█░▒█░▒█░▒█░▒█▀▀▀\n░░▀▄▄▀░▒█░░▀█░▄█▄░░▀▀█▄░░▀▄▄▀░▒█▄▄▄\n-----------------------------------\nunique-000.github.com')}
     <App />
   </React.StrictMode>
 );
