@@ -110,45 +110,119 @@ const NoteCreator = () => {
     }
     
 
-    const CardsRenderer = ({ cardsList }) => {
-        return (
-          <div className='RenderedItemsHolder'>
-            {cardsList.map((item, index) => {
-              switch (item[0]) {
-                case 'Img':
-                  return (
-                    <div key={index}>
-                      <a href={item[2]} target="_blank" rel="noopener noreferrer">
-                        <img src={item[1]} alt={`Image ${index}`} className='RenderedImg'/>
-                      </a>
+    const CardsRenderer = ({ cardsList , type}) => {
+        function deleteCard(index){
+            console.log('To jest index: ' + index)
+            const newItems = [...cardsList];
+            newItems.splice(index, 1);
+            setCardsList(newItems);
+        }
+
+        switch (type){
+            case 'Preview':
+                return (
+                    <div className='RenderedItemsHolder'>
+                      {cardsList.map((item, index) => {
+                        switch (item[0]) {
+                          case 'Img':
+                            return (
+                              <div key={index}>
+                                <a href={item[2]} target="_blank" rel="noopener noreferrer">
+                                  <img src={item[1]} alt={`Image ${index}`} className='RenderedImg'/>
+                                </a>
+                              </div>
+                            );
+                          case 'Text':
+                            return (
+                              <div key={index}>
+                                <p className='RenderedText'>{item[1]}</p>
+                              </div>
+                            );
+                          case 'Link':
+                            return (
+                              <div key={index}>
+                                <a href={item[1]} target="_blank" rel="noopener noreferrer">
+                                  {item[2]}
+                                </a>
+                              </div>
+                            );
+                          case 'Title':
+                            return (
+                              <div key={index}>
+                                <h1>{item[1]}</h1>
+                              </div>
+                            );
+                          default:
+                            return null;
+                        }
+                      })}
                     </div>
                   );
-                case 'Text':
-                  return (
-                    <div key={index}>
-                      <p className='RenderedText'>{item[1]}</p>
+
+            case 'Creator':
+                return (
+                    <div className='CreatorChild-Scrollable'>
+                      {cardsList.map((item, index) => {
+                        switch (item[0]) {
+                          case 'Img':
+                            return (
+                              <div key={index} className='RenderedDiv-Creator'>
+                                <h1 className='Title-Creator'>Img</h1>
+                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+                                <hr/>
+                                <div className='ChildDiv-Creator'>
+                                    <a href={item[2]} target="_blank" rel="noopener noreferrer">
+                                    <img src={item[1]} alt={`Image ${index}`} className='RenderedImg-Creator'/>
+                                    </a>
+                                </div>
+                              </div>
+                            );
+                          case 'Text':
+                            return (
+                              <div key={index} className='RenderedDiv-Creator'>
+                                <h1 className='Title-Creator'>Text</h1>
+                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+                                <hr/>
+                                <div className='ChildDiv-Creator'>
+                                  <p className='RenderedText-Creator'>{item[1]}</p>
+                                </div>
+                              </div>
+                            );
+                          case 'Link':
+                            return (
+                              <div key={index} className='RenderedDiv-Creator'>
+                                <h1 className='Title-Creator'>Link</h1>
+                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+                                <hr/>
+                                <div className='ChildDiv-Creator'>
+                                    <a href={item[1]} target="_blank" rel="noopener noreferrer" className='RenderedLink-Creator'>
+                                    {item[2]}
+                                    </a>
+                                </div>
+                              </div>
+                            );
+                          case 'Title':
+                            return (
+                              <div key={index} className='RenderedDiv-Creator'>
+                                <div >
+                                <h1 className='Title-Creator'>Title</h1>
+                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+                                </div>
+                                <hr/>
+                                <div className='ChildDiv-Creator'>
+                                    <h1 className='RenderedTitle-Creator'>{item[1]}</h1>
+                                </div>
+                              </div>
+                            );
+                          default:
+                            return null;
+                        }
+                      })}
                     </div>
                   );
-                case 'Link':
-                  return (
-                    <div key={index}>
-                      <a href={item[1]} target="_blank" rel="noopener noreferrer">
-                        {item[2]}
-                      </a>
-                    </div>
-                  );
-                case 'Title':
-                  return (
-                    <div key={index}>
-                      <h1>{item[1]}</h1>
-                    </div>
-                  );
-                default:
-                  return null;
-              }
-            })}
-          </div>
-        );
+        }
+
+
     };
 
     const LinkCard = (props) => {
@@ -215,12 +289,10 @@ const NoteCreator = () => {
     return(
         <div className='SectorsDivider'>
             <div className='Creator'>
-                <h1>Creator</h1>
-                <hr/>
+                <h1 className='Title-CreatorPreview'>Creator</h1>
                 <div className='CreatorChild'>
-                    <div className='CreatorChild-Scrollable'>
+                    <CardsRenderer cardsList={cardsList} type={'Creator'}/>
 
-                    </div>
                     
                     <button className='AddBtn' onClick={openCardModifier}>
                         <CiCirclePlus size={'40px'}/>
@@ -229,9 +301,10 @@ const NoteCreator = () => {
             </div>
 
             <div className='Preview'>
-                <h1>Preview</h1>
-                <hr/> 
-                <CardsRenderer cardsList={cardsList} />
+                <h1 className='Title-CreatorPreview'>Preview</h1>
+                <div className='CreatorChild'>
+                <CardsRenderer cardsList={cardsList} type={'Preview'}/>
+                </div>
             </div>
             {isDialogOpen && (
                 <>

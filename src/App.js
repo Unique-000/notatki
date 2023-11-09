@@ -24,6 +24,7 @@ const App = () => {
       <Header/>
       <NoteCreator/>
       <Footer/>
+
     </div>
   );
 }
