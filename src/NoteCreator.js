@@ -5,23 +5,9 @@ import { CiCirclePlus } from "react-icons/ci";
 import { AiOutlineClose } from 'react-icons/ai';
 
 const NoteCreator = () => {
-    const [cardsList, setCardsList] = useState([]);
-    const defaultList = ["A", "B", "C", "D", "E"];
-    const [itemList, setItemList] = useState(defaultList);
+    const [cardsList, setCardsList] = useState([['Title', 'Wilderness'], ['Text', 'The wilderness, a vast expanse of untamed beauty, harbors the raw essence of nature. Towering trees whisper ancient secrets, while rugged landscapes challenge and inspire. In this untouched realm, diverse ecosystems thrive, teeming with life. The wilderness beckons, offering a sanctuary for exploration and a canvas for Earths untamed wonders.']]);
 
-    // Function to update list on drop
-    const handleDrop = (droppedItem) => {
-      // Ignore drop outside droppable container
-      if (!droppedItem.destination) return;
-      var updatedList = [...itemList];
-      // Remove dragged item
-      const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1);
-      // Add dropped item
-      updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
-      // Update State
-      setItemList(updatedList);
-    };
-  
+    console.log(cardsList);
     const TitleCard = (props) => {
         const [inputValue, setInputValue] = useState('');
         function submit(){
@@ -134,7 +120,7 @@ const NoteCreator = () => {
                             );
                           case 'Text':
                             return (
-                              <div key={index}>
+                              <div key={index} className='DirectTextHolder'>
                                 <p className='RenderedText'>{item[1]}</p>
                               </div>
                             );
@@ -148,7 +134,7 @@ const NoteCreator = () => {
                             );
                           case 'Title':
                             return (
-                              <div key={index}>
+                              <div key={index} className='DirectTextHolder'>
                                 <h1>{item[1]}</h1>
                               </div>
                             );
@@ -286,14 +272,17 @@ const NoteCreator = () => {
       setIsDialogOpen(false);
     };
 
+    function publish(cardsList){
+        console.log('This card list has been passed to our db: ' + cardsList)
+    }
+
     return(
+        <>
+        <button className='PublishBtn' onClick={() => publish(cardsList)}>Publish</button>
         <div className='SectorsDivider'>
             <div className='Creator'>
-                <h1 className='Title-CreatorPreview'>Creator</h1>
                 <div className='CreatorChild'>
                     <CardsRenderer cardsList={cardsList} type={'Creator'}/>
-
-                    
                     <button className='AddBtn' onClick={openCardModifier}>
                         <CiCirclePlus size={'40px'}/>
                     </button>
@@ -301,10 +290,7 @@ const NoteCreator = () => {
             </div>
 
             <div className='Preview'>
-                <h1 className='Title-CreatorPreview'>Preview</h1>
-                <div className='CreatorChild'>
                 <CardsRenderer cardsList={cardsList} type={'Preview'}/>
-                </div>
             </div>
             {isDialogOpen && (
                 <>
@@ -316,9 +302,8 @@ const NoteCreator = () => {
                 </>
             )}
         </div>
+        </>
     )
 }
 
 export default NoteCreator;
-
-//TODO: ZMIEN HR I WYSRODKUJ WYRENDEROWANE ELEMENTY
