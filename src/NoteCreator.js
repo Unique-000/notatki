@@ -13,7 +13,7 @@ function postNote(body){
       body: JSON.stringify(body)
   }
 
-  fetch(`${process.env.REACT_APP_LAPIS_API}/note`, config)
+  fetch(`https://lapis-api.onrender.com/note`, config)
   .then(response => {
       if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -329,16 +329,14 @@ const NoteCreator = () => {
             }
             postNote(body)
             setWasChangeMade(false);
+            console.log('This card list has been passed to our db: ' + cardsList)
+            window.location.pathname = "/";
           }
         }
         
         if (Title === '') {
           alert('there\'s no title, change was made: ' + wasChangeMade);
         }
-        
-
-        console.log('This card list has been passed to our db: ' + cardsList)
-
     }
 
     return(

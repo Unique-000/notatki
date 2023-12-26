@@ -53,7 +53,7 @@ const ParticularNote = () => {
   const [cardsList, setCardsList] = useState([['Title', 'Default'], ['Text', 'Default']]);
   
   function getSpecificNote(noteTitle){
-    fetch(`${process.env.REACT_APP_LAPIS_API}/note/${noteTitle}`)
+    fetch(`https://lapis-api.onrender.com/note/${noteTitle}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

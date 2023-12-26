@@ -15,10 +15,12 @@ const NotesShowcase = () => {
   useEffect(() => {
     const get10Notes = async (date) => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_LAPIS_API}/browse-notes/${date}`);
+        console.log(process.env.REACT_APP_LAPIS_API)
+        const response = await fetch(`https://lapis-api.onrender.com/browse-notes/${date}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        console.log(response)
         const data = await response.json();
         const transformedData = transformResponse(data);
         console.log(transformedData)
