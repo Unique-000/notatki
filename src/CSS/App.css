@@ -1,0 +1,109 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.Header{
+  height: 6dvh;
+  width: 100%;
+  background-color: transparent;
+  outline-color: red;
+  outline-width: 1px;
+  outline-style: solid;
+  text-align: center;
+  margin-top: 10px;
+  width: 200px;
+  height: 45px;
+  display: flex;
+  justify-content: center ;
+  align-items: center;  
+  column-gap: 20px;
+  background: rgba(255, 255, 255, 0.39);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.3px);
+  -webkit-backdrop-filter: blur(5.3px);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  top: 0;
+  z-index: 1;
+  position: -webkit-sticky; /* Safari */
+  position: fixed;
+  transition: box-shadow 0.5s, background-color 0.3s;
+}
+
+.Footer{
+  height: 2dvh;
+  width: 100%;
+  background-color: transparent;
+  outline-color: red;
+  outline-width: 1px;
+  outline-style: solid;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: height 0.4s;
+  background: rgba(255, 255, 255, 0.39);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.3px);
+  -webkit-backdrop-filter: blur(5.3px);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+}
+
+.Footer:hover{
+  height: 4dvh;
+  transition: height 0.4s;
+}
+
+.HeaderBtns{
+  height: 30px;
+  width: 70px;
+  border-radius: 10px;
+  border: 1px solid #28282B;
+  cursor: pointer;
+}
+.HeaderBtns:hover{
+  height: 30px;
+  width: 70px;
+  border-radius: 10px;
+  border: 1px solid #28282B;
+}
+
+.AppHolder{
+  width: 100%;
+}
