@@ -11,7 +11,7 @@ const NotesShowcase = () => {
   const get10Notes = async (date) => {
     try {
       setIsLoading(true);
-      const response = await fetch(date ? `http://localhost:3000/browse-notes/${date}` : 'http://localhost:3000/browse-notes/');
+      const response = await fetch(date ? `https://lapis-api.onrender.com/browse-notes/${date}` : 'https://lapis-api.onrender.com/browse-notes/');
       const data = await response.json();
   
       if ('message' in data) {
