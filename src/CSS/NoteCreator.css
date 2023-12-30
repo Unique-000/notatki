@@ -1,16 +1,21 @@
 .AddBtn{
-    width: auto;
     border: none;
-    height: auto;
     cursor: pointer;
     margin: 0;
     padding: 0;
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: transparent;
     border-radius: 100px;
   }
-  .AddBtn :hover{
-    background-color: rgb(255, 255, 255);
-    border-radius: 100px;
+
+.NoteCreator{
+  margin-top: 55px;
+  margin-bottom: 45px;
+  width: 100%;
+  height: calc(100dvh - 100px);
+}
+
+  .AddBtnIcon{
+    color: var(--secondary-color);
   }
   
   .SectorsDivider{
@@ -22,9 +27,7 @@
   
   
   .Creator{
-    background-color: transparent;
     width: 50%;
-    border-right: 1% solid #282C35;
   }
   
   .CreatorChild{
@@ -55,32 +58,27 @@
   }
   
   .PublishBtn{
-    width: 96%;
+    width: 90%;
     height: 4.5dvh;
     margin: 0.5dvh;
     cursor: pointer;
-    background-color: #3C91E6;
-    border: 1px solid #3CE6CD;
+    background-color: var(--primary-color);
+    border: 1px solid var(--secondary-color);
     border-radius: 3px;
-    color: #FFFFFF;
     font-family: 'Roboto';
     font-size: x-large;
     font-weight: 700;
-    transition: all 0.5s;
+    color: var(--contrast-main);
+    transition: all 0.3s;
   
   }
   
   .PublishBtn:hover{
-    background-color: #2289f0;
-    border: 1px solid #533CE6;
-    color: #FFFFFF;
-    transition: all 0.5s;
+    border: 2.5px solid var(--secondary-color);
+    transition: all 0.3s;
   }
   
   .PublishBtn:active{
-    background-color: #533CE6;
-    border: 1px solid #533CE6;
-    color: #FFFFFF;
     transition: all 0.1s;
   }
   
@@ -98,25 +96,86 @@
   }
   
   .CenteredDialog{
-    min-width: 400px;
-    background: rgba(255, 255, 255, 0.732);
+    width: 225px;
+    padding: 10px;
+    background: var(--alter-main);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7.3px);
     -webkit-backdrop-filter: blur(7.3px);
-    border: 1px solid rgba(255, 255, 255, 0.57);
     position: absolute;
     left: 50%;
     top: 50%;
     padding: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     transform: translate(-50%, -50%);
-    border: solid #282C35 0.1px;
+    border: solid var(--secondary-color) 1px;
   }
+
+  .dialog-content{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .CloseBtn{
+    color: var(--contrast-main);
+  }
+
   .HiddenMenu-CloseBtn{
     background-color: transparent;
     border: none;
+  }
+
+  .HiddenButton-Middle1{
+    background-color: var(--primary-color);
+    color: var(--contrast-main);
+    cursor: pointer;
+    height: 30px;
+    width: 45px;
+    border-radius: 0;
+    border: 0;
+    border: 1px solid var(--secondary-color);
+    border-right: 0.5px solid var(--secondary-color);
+    border-left: 0.5px solid var(--secondary-color);
+  }
+
+  .HiddenButton-Middle2{
+    background-color: var(--primary-color);
+    color: var(--contrast-main);
+    cursor: pointer;
+    height: 30px;
+    width: 45px;
+    border-radius: 0;
+    border: 0;
+    border: 1px solid var(--secondary-color);
+    border-right: 0.5px solid var(--secondary-color);
+    border-left: 0.5px solid var(--secondary-color);
+  }
+
+  .HiddenButton-Right{
+    background-color: var(--primary-color);
+    color: var(--contrast-main);
+    cursor: pointer;
+    border: 0;
+    height: 30px;
+    width: 45px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid var(--secondary-color);
+  }
+
+  .HiddenButton-Left{
+    background-color: var(--primary-color);
+    color: var(--contrast-main);
+    cursor: pointer;
+    border: 0;
+    height: 30px;
+    width: 45px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid var(--secondary-color);
   }
 
   .DirectTextHolder{
@@ -130,14 +189,11 @@
   .RenderedText{
     font-family: 'Roboto';
     margin: 0;
-    color: #282C35;
   }
   .RenderedTitle{
-    color: #282C35;
   }
 
   .RenderedLink{
-    color: #282C35;
   }
   
   .RenderedImg{
@@ -148,12 +204,11 @@
   }
   
   .RenderedItemsHolder{
+    background-color: var(--alter-main);
     width: 80%;
-    -webkit-box-shadow: 11px 10px 8px -3px rgba(66, 68, 90, 0.25);
-    -moz-box-shadow: 11px 10px 8px -3px rgba(66, 68, 90, 0.25);
-    box-shadow: 11px 10px 8px -3px rgba(66, 68, 90, 0.25);
+    box-shadow: var(--box-shadow);
     border-radius: 10px;
-    border: 0.5px solid;
+    border: 0.5px solid var(--secondary-color);
     margin: 0;
     max-height: 98%;
     margin: 1% 0 1% 0;
@@ -161,48 +216,10 @@
     flex-direction: column;
   }
 
-  .HiddenButton-Middle1{
-    height: 30px;
-    width: 45px;
-    border-radius: 0;
-    border: 0;
-    border: 1px solid #282C35;
-    border-right: 0.5px solid #282C35;
-    border-left: 0.5px solid #282C35;
-  }
-
-  .HiddenButton-Middle2{
-    height: 30px;
-    width: 45px;
-    border-radius: 0;
-    border: 0;
-    border: 1px solid #282C35;
-    border-right: 0.5px solid #282C35;
-    border-left: 0.5px solid #282C35;
-  }
-
-  .HiddenButton-Right{
-    border: 0;
-    height: 30px;
-    width: 45px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border: 1px solid #282C35;
-  }
-
-  .HiddenButton-Left{
-    border: 0;
-    height: 30px;
-    width: 45px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border: 1px solid #282C35;
-  }
-
   /*________________Creator______________*/
   .CardInfoHolder{
     display: flex;
-    border-bottom: 1px solid #282C35;
+    border-bottom: 1px solid var(--main);
     justify-content: center;
     align-items: center;
     
@@ -210,7 +227,6 @@
 
   .Title-Creator{
     margin: 0;
-    color: #282C35;
   }
   
   .ChildDiv-Creator{
@@ -221,15 +237,14 @@
   }
   
   .RenderedDiv-Creator{
+    background-color: var(--alter-main);
     max-height: 200px;
     width: 97%;
     overflow-y: hidden;
     margin-bottom: 20px;
-    -webkit-box-shadow: 11px 10px 8px -3px rgba(66, 68, 90, 0.25);
-    -moz-box-shadow: 11px 10px 8px -3px rgba(66, 68, 90, 0.25);
-    box-shadow: 11px 10px 8px -3px rgba(66, 68, 90, 0.25);
+    box-shadow: var(--box-shadow);
     border-radius: 10px;
-    border: 0.5px solid #282C35;
+    border: 0.5px solid var(--secondary-color);
   }
   
   .NotesShowcase{
@@ -239,7 +254,6 @@
   }
   
   .RenderedLink-Creator{
-    color: #282C35;
   }
   
   .RenderedImg-Creator{
@@ -249,12 +263,10 @@
   }
   
   .RenderedText-Creator{
-    color: #282C35;
   
   }
   
   .RenderedTitle-Creator{
-    color: #282C35;
   
   }
   /*________________Rendered_Elements_______________UpHere*/

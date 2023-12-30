@@ -42,7 +42,6 @@ const CardsRenderer = ({ cardsList }) => {{
                       return null;
                   }
                 })}
-                <div className='Block'></div>
               </div>
             );
   }

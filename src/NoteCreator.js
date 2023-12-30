@@ -22,6 +22,7 @@ function postNote(body){
   })
   .then(data => {
       console.log(data); 
+      window.location.pathname = "/";
   })
   .catch(error => {
       console.error('Fetch error:', error);
@@ -208,7 +209,7 @@ const NoteCreator = () => {
                               <div key={index} className='RenderedDiv-Creator'>
                                 <div className='CardInfoHolder'>
                                 <h1 className='Title-Creator'>Img</h1>
-                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'} className='CloseBtn'/></button>
                                 </div>
                                 <div className='ChildDiv-Creator'>
                                     <a href={item[2]} target="_blank" rel="noopener noreferrer">
@@ -222,7 +223,7 @@ const NoteCreator = () => {
                               <div key={index} className='RenderedDiv-Creator'>
                                 <div className='CardInfoHolder'>
                                 <h1 className='Title-Creator'>Text</h1>
-                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'} className='CloseBtn'/></button>
                                 </div>
                                 <div className='ChildDiv-Creator'>
                                   <p className='RenderedText-Creator'>{item[1]}</p>
@@ -234,7 +235,7 @@ const NoteCreator = () => {
                               <div key={index} className='RenderedDiv-Creator'>
                                 <div className='CardInfoHolder'>
                                 <h1 className='Title-Creator'>Link</h1>
-                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'} className='CloseBtn'/></button>
                                 </div>
                                 <div className='ChildDiv-Creator'>
                                     <a href={item[1]} target="_blank" rel="noopener noreferrer" className='RenderedLink-Creator'>
@@ -248,7 +249,7 @@ const NoteCreator = () => {
                               <div key={index} className='RenderedDiv-Creator'>
                                 <div className='CardInfoHolder'>
                                 <h1 className='Title-Creator'>Title</h1>
-                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+                                <button onClick={() => deleteCard(index)} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'} className='CloseBtn'/></button>
                                 </div>
                                 <div className='ChildDiv-Creator'>
                                     <h1 className='RenderedTitle-Creator'>{item[1]}</h1>
@@ -270,7 +271,7 @@ const NoteCreator = () => {
         return (
           <div className="CenteredDialog">
             <div className="dialog-content">
-              <button onClick={onClose} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'}/></button>
+              <button onClick={onClose} className='HiddenMenu-CloseBtn'><AiOutlineClose size={'30px'} className='CloseBtn'/></button>
               {children}
             </div>
           </div>
@@ -285,7 +286,7 @@ const NoteCreator = () => {
         if (!['Img', 'Link', 'Text', 'Title'].includes(choosenInput)) {
           return (
             <div>
-              <button className='HiddenButton-Left' onClick={() => setChoosenInput('Img')}>Img</button>
+              <button className='HiddenButton-Left' onClick={() => setChoosenInput('Img')}>Image</button>
               <button className='HiddenButton-Middle1' onClick={() => setChoosenInput('Link')}>Link</button>
               <button className='HiddenButton-Middle2' onClick={() => setChoosenInput('Title')}>Title</button>
               <button className='HiddenButton-Right' onClick={() => setChoosenInput('Text')}>Text</button>
@@ -330,7 +331,7 @@ const NoteCreator = () => {
             postNote(body)
             setWasChangeMade(false);
             console.log('This card list has been passed to our db: ' + cardsList)
-            window.location.pathname = "/";
+            
           }
         }
         
@@ -340,15 +341,14 @@ const NoteCreator = () => {
     }
 
     return(
-        <>
-        <div className='Block'></div>
+        <div className='NoteCreator'>
         <button className='PublishBtn' onClick={() => publish(cardsList)}>Publish</button>
         <div className='SectorsDivider'>
             <div className='Creator'>
                 <div className='CreatorChild'>
                     <CardsRenderer cardsList={cardsList} type={'Creator'}/>
                     <button className='AddBtn' onClick={openCardModifier}>
-                        <CiCirclePlus size={'40px'}/>
+                        <CiCirclePlus size={'40px'} className='AddBtnIcon'/>
                     </button>
                 </div>
             </div>
@@ -366,7 +366,7 @@ const NoteCreator = () => {
                 </>
             )}
         </div>
-        </>
+        </div>
     )
 }
 

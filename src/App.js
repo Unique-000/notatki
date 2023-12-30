@@ -20,8 +20,9 @@ const App = () => {
   const Footer = () => {
     return(
       <div className='Footer'>
-        <p>Created by</p>
-        <a href='https://unique-000.github.io/' target='_blank'><h1>Unique-000</h1></a>
+        <a href='https://unique-000.github.io/' target='_blank' className='PortfolioLink'>
+          <p>Created by</p><h1 className='PortfolioLink'>Unique-000</h1>
+        </a>
       </div>
     )
   }

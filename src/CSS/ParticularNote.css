@@ -1,15 +1,10 @@
 .ItemsHolder{
     width: 100%;
-    height: 100dvh;
+    height: calc(100dvh - 45px);
     overflow-y: scroll;
-    
 }
 
 .Parent{
     overflow-y: scroll;
     background-color: transparent;
-}
-
-.Block{
- height: 60px;
 }
