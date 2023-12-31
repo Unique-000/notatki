@@ -6,17 +6,20 @@ const NotesShowcase = () => {
   const [cardsList, setCardsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [isSearched, setIsSearched] = useState(false);
   const [lastCardsDate, setLastCardsDate] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
   const get10Notes = async (date) => {
     try {
       setIsLoading(true);
-      const response = await fetch(date ? `https://lapis-api.onrender.com/browse-notes/${date}` : 'https://lapis-api.onrender.com/browse-notes/');
+      console.log(date ? `http://localhost:3000/browse-notes/date/${date}` : 'http://localhost:3000/browse-notes/date/')
+      const response = await fetch(date ? `http://localhost:3000/browse-notes/date/${date}` : 'http://localhost:3000/browse-notes/date/');
       const data = await response.json();
   
       if ('message' in data) {
-        console.log(data.message); // Log the message
-        // Optionally, you can update the state or display a message to the user.
+        console.log(data.message); 
+
       } else {
         const transformedData = transformResponse(data);
         setCardsList(prevCardsList => date ? [...prevCardsList, ...transformedData] : transformedData);
@@ -30,13 +33,37 @@ const NotesShowcase = () => {
     }
   };
   
+  const searchNotes = async (title) => {
+    try {
+      setIsLoading(true);
+      console.log(`http://localhost:3000/browse-notes/title/${title}`)
+      const response = await fetch(`http://localhost:3000/browse-notes/title/${title}`);
+      const data = await response.json();
+  
+      if ('message' in data) {
+        console.log(data.message);
+      
+      } else {
+        const transformedData = transformResponse(data);
+        setCardsList(transformedData);
+      }
+  
+      setIsLoading(false);
+      setIsSearched(true)
+    } catch (error) {
+      setIsError(true);
+      console.error('Fetch error:', error);
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Initial fetch without a date variable
+
     get10Notes();
-  }, []); // Empty dependency array for the initial fetch
+  }, []); 
 
   function transformResponse(originalResponse) {
+    console.log(originalResponse)
     setLastCardsDate(originalResponse[originalResponse.length - 1].createdAt)
     return originalResponse.map(item => [
       ['Title', item.title],
@@ -45,7 +72,17 @@ const NotesShowcase = () => {
   }
 
   function handleAnotherFetch() {
-    get10Notes(lastCardsDate);
+    console.log('Last Cards Date:', lastCardsDate);
+
+    const isoDateString = new Date(lastCardsDate).toISOString();
+    
+    console.log('ISO Date String:', isoDateString);
+    
+    get10Notes(isoDateString);
+  }
+
+  function handleSearch(){
+    searchNotes(searchValue)
   }
 
   const CardsRenderer = ({ cardsList }) => {
@@ -59,16 +96,20 @@ const NotesShowcase = () => {
             </div>
           </a>
         ))}
-        <button onClick={handleAnotherFetch} className='LoadMoreBtn'>Load more</button>
-      </div>
+      {!isLoading && !isError && !isSearched &&(
+        <button onClick={handleAnotherFetch} className='LoadMoreBtn'>
+          Load more
+        </button>
+      )}
+  </div>
     );
   };
 
   return (
     <div className='NotesShowcase'>
       <div className='SearchHolder'>
-        <input type='search' className='SearchInput' placeholder='Search notes' />
-        <button className='SearchButton'><IoIosSearch /></button>
+        <input type='search' className='SearchInput' onChange={e => setSearchValue(e.target.value)} value={searchValue} placeholder='Search notes' />
+        <button className='SearchButton' onClick={handleSearch}><IoIosSearch /></button>
       </div>
       {isLoading && (
         <div className="loading">Loading&#8230;</div>

@@ -102,15 +102,12 @@
   color: var(--contrast-main);
 }
 
-/*
+
 .AppHolder{
-  margin-top: 55px;
-  margin-bottom: 45px;
   width: 100%;
-  height: calc(100dvh - 100px);
+  height: 100%;
 }
-Style for every content sidepage
-*/
+
 .Block{
   height: 50px;
  }

@@ -83,12 +83,11 @@ const NoteCreator = () => {
         const [imgLink, setImgLink] = useState('');
     
         const handleInputChange = (event) => {
-            setInput(event.target.value); // Update the input state
+            setInput(event.target.value); 
         };
 
         function parseURL() {
     
-            // Regular expressions to extract the values
             const imgRegex = /\[img\](.*?)\[\/img\]/;
             const urlRegex = /\[url=(.*?)\]/;
         
@@ -360,7 +359,6 @@ const NoteCreator = () => {
                 <>
                 <div className='Default'></div>
                 <CenteredDialog onClose={closeDialog}>
-                 {/* Your content for the centered dialog */}
                   <HiddenMenu/>
                 </CenteredDialog>
                 </>
