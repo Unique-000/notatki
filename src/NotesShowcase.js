@@ -13,8 +13,8 @@ const NotesShowcase = () => {
   const get10Notes = async (date) => {
     try {
       setIsLoading(true);
-      console.log(date ? `http://localhost:3000/browse-notes/date/${date}` : 'http://localhost:3000/browse-notes/date/')
-      const response = await fetch(date ? `http://localhost:3000/browse-notes/date/${date}` : 'http://localhost:3000/browse-notes/date/');
+      console.log(date ? `https://lapis-api.onrender.com/browse-notes/date/${date}` : 'https://lapis-api.onrender.com/browse-notes/date/')
+      const response = await fetch(date ? `https://lapis-api.onrender.com/browse-notes/date/${date}` : 'https://lapis-api.onrender.com/browse-notes/date/');
       const data = await response.json();
   
       if ('message' in data) {
@@ -36,8 +36,8 @@ const NotesShowcase = () => {
   const searchNotes = async (title) => {
     try {
       setIsLoading(true);
-      console.log(`http://localhost:3000/browse-notes/title/${title}`)
-      const response = await fetch(`http://localhost:3000/browse-notes/title/${title}`);
+      console.log(`https://lapis-api.onrender.com/browse-notes/title/${title}`)
+      const response = await fetch(`https://lapis-api.onrender.com/browse-notes/title/${title}`);
       const data = await response.json();
   
       if ('message' in data) {
